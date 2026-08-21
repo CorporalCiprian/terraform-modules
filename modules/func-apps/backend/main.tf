@@ -3,12 +3,12 @@ resource "azurerm_linux_function_app" "func_app"{
   resource_group_name = var.resource_group_name
   location            = var.location
 
-  service_plan_id = azurerm_service_plan.asp_func_apps.id
+  service_plan_id = var.serviceplan
 
   storage_uses_managed_identity = true
-  storage_account_name          = azurerm_storage_account.stg_func_app.name
+  storage_account_name          = var.stgname
 
-  virtual_network_subnet_id = azurerm_subnet.snet_backend.id
+  virtual_network_subnet_id = var.subnet_id
 
   identity {
     type = "SystemAssigned"
@@ -45,7 +45,8 @@ resource "azurerm_linux_function_app" "func_app"{
     "DATABASE_URL" = "@Microsoft.KeyVault(SecretUri=${azurerm_key_vault_secret.connection_string_db.versionless_id})"
 
     "ALLOWED_ORIGINS"                  = "https://${azurerm_linux_function_app.func_todo_frontend.name}.azurewebsites.net"
-    "AzureWebJobsStorage__accountName" = azurerm_storage_account.stg_func_app.name
+    
+    "AzureWebJobsStorage__accountName" = var.stgname
 
     "env" = var.env
   }

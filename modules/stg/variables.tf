@@ -15,15 +15,3 @@ variable "rgname" {
 variable "location" {
   type = string
 }
-
-variable "adminpass" {
-  type = string
-}
-
-variable "subnet_id" {
-  type = string
-}
-
-variable "dnszone" {
-  type = string
-}

@@ -14,6 +14,14 @@ variable "location" {
   type = string
 }
 
-variable "service" {
-  
+variable "serviceplan" {
+  type = string
+}
+
+variable "stgname" {
+  type = string
+}
+
+variable "subnet_id" {
+  type = string
 }

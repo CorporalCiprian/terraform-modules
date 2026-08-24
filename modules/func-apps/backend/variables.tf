@@ -38,3 +38,7 @@ variable "db_url" {
   type = bool
 }
 
+variable "networkaccess" {
+  type = string
+  description = "type of network access to this resource, should be public or private"
+}

@@ -18,9 +18,9 @@ resource "azurerm_linux_function_app" "func_app_python_backend"{
     application_stack {
       python_version = "3.12"
     }
-    ip_restriction_default_action = "Deny"
     always_on              = true
-    vnet_route_all_enabled = true
+    vnet_route_all_enabled = var.networkaccess == "private" ? true : false
+    ip_restriction_default_action = var.networkaccess == "private" ? "Deny" : "Allow"
     ip_restriction {
       action      = "Allow"
       service_tag = "AzureCloud"

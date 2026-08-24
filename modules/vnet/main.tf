@@ -1,4 +1,4 @@
-resource "azurerm_virtual_network" "vnet_todo" {
+resource "azurerm_virtual_network" "vnet" {
     name = "vnet-todo-${var.env}"
     location = var.location
     resource_group_name = var.rgname

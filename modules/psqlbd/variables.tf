@@ -27,3 +27,16 @@ variable "subnet_id" {
 variable "dnszone" {
   type = string
 }
+
+variable "adminname" {
+  type = string
+  default = "postgres"
+}
+
+variable "sku" {
+  type = string
+}
+
+variable "netaccess" {
+  type = bool
+}

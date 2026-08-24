@@ -28,9 +28,23 @@ variable "subnet_id" {
 
 variable "build_in_azure" {
   type = bool 
+  default = true
 }
 
 variable "networkaccess" {
   type = string
   description = "type of network access to this resource, should be public or private"
+  default = "public"
+}
+
+variable "subscription_id" {
+  type = string
+}
+
+variable "vm_rg" {
+  type = string
+}
+
+variable "vm_name" {
+  type = string
 }

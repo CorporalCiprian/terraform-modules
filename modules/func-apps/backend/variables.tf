@@ -25,3 +25,16 @@ variable "stgname" {
 variable "subnet_id" {
   type = string
 }
+
+variable "allowedorigins" {
+  type = string
+}
+
+variable "build_in_azure" {
+  type = bool 
+}
+
+variable "db_url" {
+  type = bool
+}
+

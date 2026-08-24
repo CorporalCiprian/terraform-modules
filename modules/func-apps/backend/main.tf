@@ -1,4 +1,4 @@
-resource "azurerm_linux_function_app" "func_app"{
+resource "azurerm_linux_function_app" "func_app_python_backend"{
     name                = "func-app-${var.project_name}-backend-${var.env}"
   resource_group_name = var.resource_group_name
   location            = var.location
@@ -35,16 +35,16 @@ resource "azurerm_linux_function_app" "func_app"{
   }
 
   app_settings = {
-    "SCM_DO_BUILD_DURING_DEPLOYMENT" = "false"
-    "ENABLE_ORYX_BUILD"              = "false"
+    "SCM_DO_BUILD_DURING_DEPLOYMENT" = tostring(var.build_in_azure)
+    "ENABLE_ORYX_BUILD"              = tostring(var.build_in_azure)
 
     "WEBSITE_RUN_FROM_PACKAGE" = "1"
     "AzureWebJobsFeatureFlags" = "EnableWorkerIndexing"
     "FUNCTIONS_WORKER_RUNTIME" = "python"
 
-    "DATABASE_URL" = "@Microsoft.KeyVault(SecretUri=${azurerm_key_vault_secret.connection_string_db.versionless_id})"
+    "DATABASE_URL" = var.db_url
 
-    "ALLOWED_ORIGINS"                  = "https://${azurerm_linux_function_app.func_todo_frontend.name}.azurewebsites.net"
+    "ALLOWED_ORIGINS"                  = var.allowedorigins
     
     "AzureWebJobsStorage__accountName" = var.stgname
 

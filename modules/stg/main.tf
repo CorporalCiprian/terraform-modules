@@ -1,7 +1,7 @@
 #
 # Storage accounts
 #
-resource "azurerm_storage_account" "stg_func_app" {
+resource "azurerm_storage_account" "stg" {
   name = "stg${var.project_name}${var.env}"
   resource_group_name = var.rgname
   location = var.location

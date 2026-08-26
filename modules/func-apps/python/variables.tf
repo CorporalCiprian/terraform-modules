@@ -1,3 +1,7 @@
+variable "name" {
+  type = string
+}
+
 variable "resource_group_name" {
   type = string
 }
@@ -18,19 +22,14 @@ variable "serviceplan" {
   type = string
 }
 
+variable "app_settings" {
+  type = map(string)
+}
+
 variable "stgname" {
   type = string
 }
 
 variable "subnet_id" {
   type = string
-}
-
-variable "build_in_azure" {
-  type = bool 
-}
-
-variable "networkaccess" {
-  type = string
-  description = "type of network access to this resource, should be public or private"
 }

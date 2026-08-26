@@ -2,6 +2,10 @@ variable "resource_group_name" {
   type = string
 }
 
+variable "name" {
+  type = string
+}
+
 variable "project_name" {
   type = string
 }
@@ -26,19 +30,6 @@ variable "subnet_id" {
   type = string
 }
 
-variable "allowedorigins" {
-  type = string
-}
-
-variable "build_in_azure" {
-  type = bool 
-}
-
-variable "db_url" {
-  type = bool
-}
-
-variable "networkaccess" {
-  type = string
-  description = "type of network access to this resource, should be public or private"
+variable "app_settings" {
+  type = map(string)
 }

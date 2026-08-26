@@ -19,7 +19,11 @@ resource "azurerm_linux_function_app" "func_app_node" {
     always_on = true
   }
 
-  app_settings = var.app_settings
+  app_settings = merge(var.app_settings, {
+    "WEBSITE_RUN_FROM_PACKAGE" = "1"
+    "AzureWebJobsFeatureFlags" = "EnableWorkerIndexing"
+    "FUNCTIONS_WORKER_RUNTIME" = "node"
+  })
 
   lifecycle {
     ignore_changes = [app_settings["WEBSITE_RUN_FROM_PACKAGE"], app_settings["AzureWebJobsStorage__accountName"],]

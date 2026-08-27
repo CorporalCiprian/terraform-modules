@@ -7,7 +7,7 @@ resource "azurerm_network_security_group" "nsg" {
 resource "azurerm_network_security_rule" "rule" {
   for_each = var.security_rules
   name = each.value.name
-  resource_group_name = each.value.resource_group_name
+  resource_group_name = var.resource_group_name
   protocol = each.value.protocol
   description = each.value.description
 

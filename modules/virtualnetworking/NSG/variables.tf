@@ -13,7 +13,6 @@ variable "resource_group_name" {
 variable "security_rules" {
   type = map(object({
     name = string
-    resource_group_name = string
     protocol = string
     description = optional(string)
     source_port_range = optional(string)

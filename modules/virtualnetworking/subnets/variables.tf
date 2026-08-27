@@ -6,10 +6,6 @@ variable "virtual_network_name" {
   type = string
 }
 
-variable "snet_name_convention" {
-  type = string
-}
-
 variable "env" {
   type = string
   default = "dev"

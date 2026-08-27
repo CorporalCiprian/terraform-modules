@@ -8,7 +8,11 @@ variable "virtual_network_name" {
 
 variable "snet_name_convention" {
   type = string
-  default = "snet-${each.key}-dev"
+}
+
+variable "env" {
+  type = string
+  default = "dev"
 }
 
 variable "subnets" {

@@ -13,7 +13,7 @@ variable "env" {
 
 variable "subnets" {
   type = map(object({
-    address_prefixes = string
+    address_prefixes = list(string)
     service_delegation = optional(bool,false)
     delegation_name = optional(string)
     service_name = optional(string)

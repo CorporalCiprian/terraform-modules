@@ -17,19 +17,23 @@ variable "location" {
 }
 
 variable "adminpass" {
-  type = optional(string)
+  type = string
+  default = null
 }
 
 variable "subnet_id" {
-  type = optional(string)
+  type = string
+  default = null
 }
 
 variable "dnszone" {
-  type = optional(string)
+  type = string
+  default = null
 }
 
 variable "adminname" {
-  type = optional(string)
+  type = string
+  default = null
 }
 
 variable "sku" {
@@ -42,7 +46,7 @@ variable "netaccess" {
   default = true
 }
 
-variable "version" {
+variable "bd_version" {
   type = string
   default = "16"
 }

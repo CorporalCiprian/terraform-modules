@@ -6,6 +6,6 @@ output "subnet_ids" {
 
 output "address_prefix" {
   value = {
-    for k, v in azurerm_subnet.snet : k => v.address_prefix
+    for k, v in azurerm_subnet.snet : k => v.address_prefixes[0]
   }
 }

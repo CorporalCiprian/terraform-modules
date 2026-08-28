@@ -29,7 +29,7 @@ resource "azurerm_linux_function_app" "func_app"{
      vnet_route_all_enabled = var.site_config.vnet_route_all_enabled
     
     dynamic "ip_restriction" {
-      for_each = var.ip_restrictions != null ? var.ip_restrictions : []
+      for_each = var.ip_restrictions != null ? var.ip_restrictions : {}
       content {
         action = each.value.action
         ip_address = each.value.ip_address

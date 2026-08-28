@@ -16,8 +16,8 @@ resource "azurerm_linux_function_app" "func_app"{
   
   site_config {
     application_stack {
-      python_version = var.site_config.python_version
-      node_version = var.site_config.node_version 
+      python_version = var.site_config.application_stack.python_version
+      node_version = var.site_config.application_stack.node_version 
     }
      always_on = var.site_config.always_on
      api_definition_url = var.site_config.api_definition_url

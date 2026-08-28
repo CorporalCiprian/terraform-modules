@@ -8,7 +8,7 @@ resource "azurerm_postgresql_flexible_server" "db_server" {
   administrator_login    = var.adminname
   administrator_password = var.adminpass
   sku_name = var.sku
-  version = "16"
+  version = var.version
 
   delegated_subnet_id = var.subnet_id
 

@@ -17,26 +17,32 @@ variable "location" {
 }
 
 variable "adminpass" {
-  type = string
+  type = optional(string)
 }
 
 variable "subnet_id" {
-  type = string
+  type = optional(string)
 }
 
 variable "dnszone" {
-  type = string
+  type = optional(string)
 }
 
 variable "adminname" {
-  type = string
-  default = "postgres"
+  type = optional(string)
 }
 
 variable "sku" {
   type = string
+  default = "B_Standard_B1ms"
 }
 
 variable "netaccess" {
   type = bool
+  default = true
+}
+
+variable "version" {
+  type = string
+  default = "16"
 }

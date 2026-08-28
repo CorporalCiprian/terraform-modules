@@ -61,4 +61,5 @@ variable "ip_restrictions" {
     virtual_network_subnet_id = optional(string)
     description = optional(string)
   }))
+  default = null
 }

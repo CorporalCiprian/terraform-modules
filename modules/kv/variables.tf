@@ -31,9 +31,21 @@ variable "rbac_authorization_enabled" {
 }
 
 variable "network_acls" {
-  type = object({
-    default_action = string
-    bypass = string
-    ip_rules = list(string)
-  })
+  type = bool
+  default = false
+}
+
+variable "default_action" {
+  type = string
+  default = null
+}
+
+variable "bypass" {
+  type = string
+  default = null
+}
+
+variable "ip_rules" {
+  type = list(string)
+  default = []
 }

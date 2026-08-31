@@ -50,3 +50,7 @@ variable "bd_version" {
   type = string
   default = "16"
 }
+
+variable "databases" {
+  type = list(string)
+}

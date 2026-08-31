@@ -26,6 +26,7 @@ resource "azurerm_postgresql_flexible_server" "db_server" {
 # Postgresql Database
 #
 resource "azurerm_postgresql_flexible_server_database" "db" {
-  name      = "${var.project_name}-db-${var.env}"
+  for_each = var.databases != [] ? var.databases : []
+  name      = each.value
   server_id = azurerm_postgresql_flexible_server.db_server.id
 }

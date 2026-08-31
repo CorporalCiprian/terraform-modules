@@ -6,6 +6,8 @@ output "fqdn" {
     value = azurerm_postgresql_flexible_server.db_server.fqdn
 }
 
-output "dbname" {
-  value = azurerm_postgresql_flexible_server_database.db.name
+output "dbnames" {
+  value = {
+    for k, v in azurerm_postgresql_flexible_server_database.db : k => v.name
+  }
 }

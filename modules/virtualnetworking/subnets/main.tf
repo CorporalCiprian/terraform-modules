@@ -6,7 +6,7 @@ resource "azurerm_subnet" "snet" {
   address_prefixes = each.value.address_prefixes
 
   dynamic "delegation" {
-    for_each = each.value.service_delegation == "true" ? [1] : []
+    for_each = each.value.service_delegation == true ? [1] : []
 
     content {
       name = each.value.delegation_name

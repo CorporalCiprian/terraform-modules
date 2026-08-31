@@ -17,4 +17,8 @@ resource "azurerm_subnet" "snet" {
       }
     }
   }
+
+  lifecycle {
+    ignore_changes = [ delegation ]
+  }
 }

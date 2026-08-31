@@ -48,6 +48,6 @@ resource "azurerm_linux_function_app" "func_app"{
   })
 
   lifecycle {
-    ignore_changes = [app_settings["WEBSITE_RUN_FROM_PACKAGE"], app_settings["AzureWebJobsStorage__accountName"],]
+    ignore_changes = [app_settings["WEBSITE_RUN_FROM_PACKAGE"], app_settings["AzureWebJobsStorage__accountName"], app_settings["WEBSITE_VNET_ROUTE_ALL"]]
   }
 }

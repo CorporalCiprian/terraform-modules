@@ -26,7 +26,9 @@ resource "azurerm_postgresql_flexible_server" "db_server" {
 # Postgresql Database
 #
 resource "azurerm_postgresql_flexible_server_database" "db" {
-  for_each = var.databases != [] ? var.databases : []
-  name      = each.value
+  for_each = var.databases != {} ? var.databases : {}
+  name      = each.key
   server_id = azurerm_postgresql_flexible_server.db_server.id
+  collation = each.value.collation
+  charset = each.value.charset
 }

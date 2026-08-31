@@ -52,5 +52,8 @@ variable "bd_version" {
 }
 
 variable "databases" {
-  type = list(string)
+  type = map(object({
+    charset = optional(string)
+    collation = optional(string)
+  }))
 }

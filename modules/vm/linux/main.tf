@@ -16,6 +16,14 @@ resource "azurerm_linux_virtual_machine" "vm" {
         }
     }
   }
+
+  dynamic "identity" {
+    for_each = tomap(var.identity)
+    content {
+      type = each.value.type
+      identity_ids = each.value.identity_ids
+    }
+  }
   resource_group_name = var.resource_group_name
   size = var.size
   location = var.location

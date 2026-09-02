@@ -67,3 +67,11 @@ variable "custom_data" {
   type = string
   default = null
 }
+
+variable "identity" {
+  type = object({
+    type = string
+    identity_ids = optional(string)
+  })
+  default = {}
+}

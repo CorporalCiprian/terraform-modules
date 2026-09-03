@@ -56,7 +56,7 @@ variable "admin_password" {
   default = null
 }
 
-variable "admin_ssh_key" {
+variable "admin_ssh_keys" {
   type = map(object({
     public_key = string
     username = string

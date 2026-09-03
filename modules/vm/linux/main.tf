@@ -41,7 +41,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
     admin_password = var.admin_password
 
   dynamic "admin_ssh_key" {
-    for_each = var.admin_ssh_key
+    for_each = var.admin_ssh_keys
     content {
         public_key = each.value.public_key
         username = each.value.username

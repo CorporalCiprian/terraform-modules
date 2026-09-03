@@ -9,7 +9,7 @@ resource "azurerm_linux_virtual_machine_scale_set" "vmss" {
     storage_account_type = var.storage_account_type
   }
   dynamic "source_image_reference" {
-    for_each = tomap(var.source_image_reference)
+    for_each = var.source_image_reference
     content {
         publisher = each.value.publisher
         offer = each.value.offer
@@ -19,7 +19,7 @@ resource "azurerm_linux_virtual_machine_scale_set" "vmss" {
   }
 
   dynamic "identity" {
-    for_each = tomap(var.identity)
+    for_each = var.identity
     content {
       type = each.value.type
       identity_ids = each.value.identity_ids
@@ -28,6 +28,7 @@ resource "azurerm_linux_virtual_machine_scale_set" "vmss" {
   
   admin_username = var.admin_username
   admin_password = var.admin_password
+  disable_password_authentication = var.admin_password != null ? true : false
   dynamic "admin_ssh_key" {
     for_each = var.admin_ssh_keys
     content {

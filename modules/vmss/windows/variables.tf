@@ -31,12 +31,12 @@ variable "storage_account_type" {
 }
 
 variable "source_image_reference" {
-  type = object({
+  type = map(object({
     publisher = string
     offer = string
     sku = string
     version = string
-  })
+  }))
   default = {}
 }
 
@@ -46,15 +46,6 @@ variable "admin_username" {
 
 variable "admin_password" {
   type = string
-  default = null
-}
-
-variable "admin_ssh_keys" {
-  type = map(object({
-    username = string
-    public_key = string
-  }))
-  default = {}
 }
 
 variable "network_interfaces" {
@@ -63,10 +54,10 @@ variable "network_interfaces" {
     ip_configurations = map(object({
       primary = optional(bool)
       subnet_id = optional(string)
-      public_ip_address = optional(object({
+      public_ip_address = optional(map(object({
         name = string
         public_ip_prefix_id = optional(string)
-      }))
+      })))
     }))
   }))
 }
@@ -77,9 +68,9 @@ variable "custom_data" {
 }
 
 variable "identity" {
-  type = object({
+  type = map(object({
     type = string
     identity_ids = optional(string)
-  })
+  }))
   default = {}
 }

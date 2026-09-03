@@ -12,14 +12,14 @@ variable "license_type" {
 }
 
 variable "os_disk" {
-  type = object({
+  type = map(object({
     caching = string
     storage_account_type = optional(string)
-    diff_disk_settings = optional(object({
+    diff_disk_settings = optional(map(object({
         option = string
         placement = optional(string)
-    }))
-  })
+    })))
+  }))
   default = {}
 }
 
@@ -37,12 +37,12 @@ variable "location" {
 }
 
 variable "source_image_reference" {
-  type = object({
+  type = map(object({
     publisher = string
     offer = string
     sku = string
     version = string 
-  })
+  }))
   default = {}
 }
 
@@ -57,10 +57,11 @@ variable "admin_password" {
 }
 
 variable "admin_ssh_key" {
-  type = object({
+  type = map(object({
     public_key = string
     username = string
-  })
+  }))
+  default = {}
 }
 
 variable "custom_data" {
@@ -69,9 +70,9 @@ variable "custom_data" {
 }
 
 variable "identity" {
-  type = object({
+  type = map(object({
     type = string
     identity_ids = optional(string)
-  })
+  }))
   default = {}
 }

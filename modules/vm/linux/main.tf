@@ -3,12 +3,12 @@ resource "azurerm_linux_virtual_machine" "vm" {
   network_interface_ids = var.network_interface_ids
   license_type = var.license_type
   dynamic "os_disk" {
-    for_each = tomap(var.os_disk) 
+    for_each = var.os_disk
     content {
         caching = each.value.caching
         storage_account_type = each.value.storage_account_type
         dynamic "diff_disk_settings" {
-          for_each = each.value.caching == "ReadOnly" ? tomap(each.value.diff_disk_settings) : {}
+          for_each = each.value.caching == "ReadOnly" ? each.value.diff_disk_settings : {}
           content {
             option = each.value.option
             placement = each.value.placement
@@ -18,7 +18,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
   }
 
   dynamic "identity" {
-    for_each = tomap(var.identity)
+    for_each = var.identity
     content {
       type = each.value.type
       identity_ids = each.value.identity_ids
@@ -29,7 +29,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
   location = var.location
 
   dynamic "source_image_reference" {
-    for_each = tomap(var.source_image_reference)
+    for_each = var.source_image_reference
     content {
       publisher = each.value.publisher
       offer = each.value.offer

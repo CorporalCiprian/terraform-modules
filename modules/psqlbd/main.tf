@@ -2,7 +2,7 @@
 # Database server
 #
 resource "azurerm_postgresql_flexible_server" "db_server" {
-  name                   = "${var.project_name}-pg-server-${var.env}"
+  name                   = var.name
   resource_group_name    = var.rgname
   location               = var.location
   administrator_login    = var.adminname

@@ -1,11 +1,5 @@
-variable "project_name" {
+variable "name" {
   type = string
-  default = "todo"
-}
-
-variable "env" {
-  type = string
-  default = "dev"
 }
 
 variable "rgname" {

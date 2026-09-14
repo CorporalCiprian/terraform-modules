@@ -1,7 +1,7 @@
 data "azurerm_client_config" "current" {}
 
 resource "azurerm_key_vault" "kv" {
-  name                       = "kv-${var.project_name}-${var.env}v"
+  name                       = var.name
   location                   = var.location
   resource_group_name        = var.rgname
   tenant_id                  = data.azurerm_client_config.current.tenant_id

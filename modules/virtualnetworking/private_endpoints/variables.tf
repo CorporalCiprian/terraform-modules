@@ -24,6 +24,7 @@ variable "connectionid" {
 
 variable "subresource_names" {
   type = list(string)
+  default = []
 }
 
 variable "dnsgroupname" {

@@ -19,6 +19,6 @@ resource "azurerm_subnet" "snet" {
   }
 
   lifecycle {
-    ignore_changes = var.ignore_changes
+    ignore_changes = [ delegation, service_endpoints ]
   }
 }

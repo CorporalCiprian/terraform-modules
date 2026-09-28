@@ -20,3 +20,8 @@ variable "subnets" {
     delegation_actions = optional(list(string))
   }))
 }
+
+variable "ignore_changes" {
+  type = list(string)
+  default = []
+}

@@ -22,6 +22,6 @@ variable "subnets" {
 }
 
 variable "ignore_changes" {
-  type = list(string)
+  type = set
   default = []
 }

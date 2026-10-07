@@ -31,13 +31,13 @@ resource "azurerm_linux_function_app" "func_app"{
     dynamic "ip_restriction" {
       for_each = var.ip_restrictions != null ? var.ip_restrictions : {}
       content {
-        action = each.value.action
-        ip_address = each.value.ip_address
-        name = each.key
-        priority = each.value.priority
-        service_tag = each.value.service_tag
-        virtual_network_subnet_id = each.value.virtual_network_subnet_id
-        description = each.value.description
+        action = ip_restrictions.value.action
+        ip_address = ip_restrictions.value.ip_address
+        name = ip_restrictions.key
+        priority = ip_restrictions.value.priority
+        service_tag = ip_restrictions.value.service_tag
+        virtual_network_subnet_id = ip_restrictions.value.virtual_network_subnet_id
+        description = ip_restrictions.value.description
     }
   }
   }

@@ -43,3 +43,13 @@ variable "ip_rules" {
 variable "name" {
   type = string
 }
+
+variable "enable_secret_expiration_alert" {
+  type = bool
+  default = false
+}
+
+variable "email_receivers" {
+  type = map(string)
+  default = {}
+}

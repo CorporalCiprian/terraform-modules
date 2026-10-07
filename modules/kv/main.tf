@@ -17,3 +17,13 @@ resource "azurerm_key_vault" "kv" {
     }
   } 
 }
+
+module "monitoring" {
+  count = var.enable_secret_expiration_alert == true ? 1 : 0
+  source = "git::https://github.com/CorporalCiprian/terraform-modules//modules/keyvault_monitoring"
+  rgname = var.rgname
+  location = var.location
+  kv_id = azurerm_key_vault.kv.id
+  kvname = azurerm_key_vault.kv.name
+  email_receivers = var.email_receivers
+}

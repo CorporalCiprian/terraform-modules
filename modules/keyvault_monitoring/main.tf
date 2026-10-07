@@ -33,6 +33,7 @@ resource "azurerm_monitor_scheduled_query_rules_alert" "kv_secret_alert" {
   time_window = 5
   frequency = 5
   data_source_id = azurerm_log_analytics_workspace.lga_kv.id
+  severity = 2
 
   query       = <<-QUERY
   AzureDiagnostics 

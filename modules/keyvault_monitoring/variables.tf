@@ -15,9 +15,6 @@ variable "kvname" {
 }
 
 variable "email_receivers" {
-  type = map(object({
-    name = string
-    email = string 
-  }))
+  type = map(string)
   default = {}
 }

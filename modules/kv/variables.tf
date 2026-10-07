@@ -50,9 +50,6 @@ variable "enable_secret_expiration_alert" {
 }
 
 variable "email_receivers" {
-  type = map(object({
-    name = string
-    email = string 
-  }))
+  type = map(string)
   default = {}
 }

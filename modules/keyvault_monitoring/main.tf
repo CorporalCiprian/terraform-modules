@@ -5,8 +5,8 @@ resource "azurerm_monitor_action_group" "action_group_test" {
   dynamic "email_receiver" {
     for_each = var.email_receivers
     content {
-      name = email_receivers.key
-      email_address = email_receivers.value
+      name = email_receivers.each.key
+      email_address = email_receivers.each.value
     }
   }
 }

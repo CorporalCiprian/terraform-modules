@@ -5,13 +5,13 @@ resource "azurerm_windows_virtual_machine" "vm" {
   dynamic "os_disk" {
     for_each = var.os_disk 
     content {
-        caching = each.value.caching
-        storage_account_type = each.value.storage_account_type
+        caching = os_disk.value.caching
+        storage_account_type = os_disk.value.storage_account_type
         dynamic "diff_disk_settings" {
-          for_each = each.value.caching == "ReadOnly" ? each.value.diff_disk_settings : {}
+          for_each = os_disk.value.caching == "ReadOnly" ? os_disk.value.diff_disk_settings : {}
           content {
-            option = each.value.option
-            placement = each.value.placement
+            option = diff_disk_settings.value.option
+            placement = diff_disk_settings.value.placement
           }
         }
     }
@@ -20,8 +20,8 @@ resource "azurerm_windows_virtual_machine" "vm" {
   dynamic "identity" {
     for_each = var.identity
     content {
-      type = each.value.type
-      identity_ids = each.value.identity_ids
+      type = identity.value.type
+      identity_ids = identity.value.identity_ids
     }
   }
   resource_group_name = var.resource_group_name
@@ -31,10 +31,10 @@ resource "azurerm_windows_virtual_machine" "vm" {
   dynamic "source_image_reference" {
     for_each = var.source_image_reference
     content {
-      publisher = each.value.publisher
-      offer = each.value.offer
-      sku = each.value.sku
-      version = each.value.version
+      publisher = source_image_reference.value.publisher
+      offer = source_image_reference.value.offer
+      sku = source_image_reference.value.sku
+      version = source_image_reference.value.version
     }
   }
   admin_username = var.admin_username

@@ -11,18 +11,18 @@ resource "azurerm_linux_virtual_machine_scale_set" "vmss" {
   dynamic "source_image_reference" {
     for_each = var.source_image_reference
     content {
-        publisher = each.value.publisher
-        offer = each.value.offer
-        sku = each.value.sku
-        version = each.value.version
+        publisher = source_image_reference.value.publisher
+        offer = source_image_reference.value.offer
+        sku = source_image_reference.value.sku
+        version = source_image_reference.value.version
     }
   }
 
   dynamic "identity" {
     for_each = var.identity
     content {
-      type = each.value.type
-      identity_ids = each.value.identity_ids
+      type = identity.value.type
+      identity_ids = identity.value.identity_ids
     }
   }
   
@@ -32,27 +32,27 @@ resource "azurerm_linux_virtual_machine_scale_set" "vmss" {
   dynamic "admin_ssh_key" {
     for_each = var.admin_ssh_keys
     content {
-        username = each.value.username
-        public_key = each.value.public_key
+        username = admin_ssh_key.value.username
+        public_key = admin_ssh_key.value.public_key
     }
   }
   dynamic "network_interface" {
     for_each = var.network_interfaces
     content {
-      name = each.key
-      primary = each.value.primary
+      name = network_interface.key
+      primary = network_interface.value.primary
 
       dynamic "ip_configuration" {
-        for_each = each.value.ip_configurations
+        for_each = network_interface.value.ip_configurations
         content {
-          name = each.key
-          primary = each.value.primary
-          subnet_id = each.value.subnet_id
+          name = ip_configuration.key
+          primary = ip_configuration.value.primary
+          subnet_id = ip_configuration.value.subnet_id
           dynamic "public_ip_address" {
-            for_each = each.value.public_ip_address
+            for_each = ip_configuration.value.public_ip_address
             content {
-              name = each.value.name
-              public_ip_prefix_id = each.value.public_ip_prefix_id
+              name = public_ip_address.value.name
+              public_ip_prefix_id = public_ip_address.value.public_ip_prefix_id
             }
           }
         }

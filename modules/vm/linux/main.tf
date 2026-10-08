@@ -20,8 +20,8 @@ resource "azurerm_linux_virtual_machine" "vm" {
   dynamic "identity" {
     for_each = var.identity
     content {
-      type = each.value.type
-      identity_ids = each.value.identity_ids
+      type = identity.value.type
+      identity_ids = identity.value.identity_ids
     }
   }
   resource_group_name = var.resource_group_name
@@ -31,10 +31,10 @@ resource "azurerm_linux_virtual_machine" "vm" {
   dynamic "source_image_reference" {
     for_each = var.source_image_reference
     content {
-      publisher = each.value.publisher
-      offer = each.value.offer
-      sku = each.value.sku
-      version = each.value.version
+      publisher = source_image_reference.value.publisher
+      offer = source_image_reference.value.offer
+      sku = source_image_reference.value.sku
+      version = source_image_reference.value.version
     }
   }
     admin_username = var.admin_username
@@ -43,8 +43,8 @@ resource "azurerm_linux_virtual_machine" "vm" {
   dynamic "admin_ssh_key" {
     for_each = var.admin_ssh_keys
     content {
-        public_key = each.value.public_key
-        username = each.value.username
+        public_key = admin_ssh_key.value.public_key
+        username = admin_ssh_key.value.username
     }
   }
   custom_data = var.custom_data
